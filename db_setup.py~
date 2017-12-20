@@ -1,0 +1,4 @@
+import pymysql
+import dbconfig
+
+connection = pymysql.connect(host='localhost')
