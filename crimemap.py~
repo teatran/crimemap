@@ -1,0 +1,21 @@
+from dbhelper import DBHelper
+from flask import Flask, render_template, request
+
+app = Flask(__name__)
+dbHelper = DBHelper()
+
+
+@app.route("/")
+def home():
+    try:
+        data = dbHelper.select_all()
+    except Exception as e:
+        print e
+        data = None
+    return render_template("home.html", data=data)
+
+
+@app.route('/add', methods=['POST'])
+def add():
+    try:
+        data = request.form.
