@@ -12,8 +12,7 @@ def home():
     except Exception as e:
         print e
         descriptionData = None
-    return render_template("home.html",
-                           descriptionData=descriptionData)
+    return render_template("home.html")
 
 
 @app.route('/add', methods=['POST'])

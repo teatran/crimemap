@@ -13,7 +13,7 @@ class DBHelper:
     def select_all(self):
         connection = self.connect()
         try:
-            query = "SELECT description FROM crimes"
+            query = "SELECT id, description FROM crimes;"
             with connection.cursor() as cursor:
                 cursor.execute(query)
             return cursor.fetchall()
@@ -23,10 +23,9 @@ class DBHelper:
     def insert(self, des):
         connection = self.connect()
         try:
-            query = ("INSERT INTO crimes (description) VALUES" +
-                     "('{}');".format(des))
+            query = "INSERT INTO crimes (description) VALUES (%s);" 
             with connection.cursor() as cursor:
-                cursor.execute(query)
+                cursor.execute(query, des)
                 connection.commit()
         finally:
             connection.close()
